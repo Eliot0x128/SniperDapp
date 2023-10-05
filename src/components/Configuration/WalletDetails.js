@@ -1,35 +1,28 @@
 import { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 
-const plans = [
+const initial_plans = [
   {
-    name: 'Startup',
-    ram: '12GB',
-    cpus: '6 CPUs',
-    disk: '160 GB SSD disk',
+    name: 'Account Connected',
+    details: '0x0f2b.....0196d8',
   },
   {
-    name: 'Business',
-    ram: '16GB',
-    cpus: '8 CPUs',
-    disk: '512 GB SSD disk',
+    name: 'Current Balance',
+    details: '0.23 ETH',
   },
   {
-    name: 'Enterprise',
-    ram: '32GB',
-    cpus: '12 CPUs',
-    disk: '1024 GB SSD disk',
+    name: 'Status',
+    details: 'Online',
   },
   {
-    name: 'Enterprise',
-    ram: '32GB',
-    cpus: '12 CPUs',
-    disk: '1024 GB SSD disk',
+    name: 'Last Trade',
+    details: '21 minutes ago',
   }
 ]
 
 export default function Example() {
-  const [selected, setSelected] = useState(plans[0])
+  const [selected, setSelected] = useState(initial_plans[0])
+  const [plans, setPlans] = useState(initial_plans)
 
   return (
     <div className="w-full px-4 py-16">
@@ -73,10 +66,8 @@ export default function Example() {
                             }`}
                           >
                             <span>
-                              {plan.ram}/{plan.cpus}
+                              {plan.details}
                             </span>{' '}
-                            <span aria-hidden="true">&middot;</span>{' '}
-                            <span>{plan.disk}</span>
                           </RadioGroup.Description>
                         </div>
                       </div>
