@@ -3,20 +3,23 @@ import { ethers } from 'ethers';
 import Web3 from "web3";
 import '../css/project.css'
 import '../css/animations.css';
+import { useNavigate } from 'react-router-dom';
 
 function Landing () {
   const [buttonName, setButtonName] = useState("Connect Wallet");
 
   const ethereum = window.ethereum;
-  const provider = new ethers.providers.Web3Provider(ethereum);
+
+  const navigate = useNavigate();
 
   const connectWallet = async () => {
     const accounts = await ethereum.request({
       method: "eth_requestAccounts",
     });
-    const walletAddress = accounts[0];    // first account in MetaMask
-    
+  
     setButtonName("Connected");
+
+    navigate('/manage');
   };
 
     return (
@@ -29,7 +32,7 @@ function Landing () {
                 <p className="flex items-baseline justify-center mt-6 gap-x-2">
                   <span className="text-base font-semibold leading-6 tracking-wide text-gray-400">Connect Your wallet to access this section</span>
                 </p>
-                <button onClick={connectWallet} id="connectButton" className="block w-1/2 px-3 py-3 mx-auto mt-10 text-sm font-semibold text-center text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                <button onClick={connectWallet} id="connectButton" className="block w-1/2 px-3 py-3 mx-auto mt-10 text-sm font-semibold text-center text-white rounded-md shadow-sm bg-sky-900 hover:bg-sky-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-900">
                   {buttonName}
                 </button>
               </div>
