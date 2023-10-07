@@ -13,6 +13,10 @@ function Landing () {
   const navigate = useNavigate();
 
   const connectWallet = async () => {
+    if(ethereum == undefined || ethereum == null) {
+      alert("Metamask Wallet Extension Not Intsalled");
+      return;
+    }
     const accounts = await ethereum.request({
       method: "eth_requestAccounts",
     });
